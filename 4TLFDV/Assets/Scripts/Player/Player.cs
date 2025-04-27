@@ -139,16 +139,18 @@ public class Player : BaseFarmer
 
     public override void HarvestCrop(FarmTile tile)
     {
-        if (handState == HANDSTATE.EMPTY)
-        {
-            tile.HarvestCrop();
-            AddGold(10);
-            Debug.Log("Player harvested a crop!");
-        }
-        else
-        {
-            Debug.LogWarning("Player must have empty hands to harvest!");
-        }
+        if (handState != HANDSTATE.EMPTY)
+            EmptyHand();
+
+        tile.HarvestCrop();
+        AddGold(10);
+        Debug.Log("Player harvested a crop!");
+    }
+
+    private void EmptyHand()
+    {
+        handState = HANDSTATE.EMPTY;
+        Debug.LogWarning("Emptied Player hand so they could harvest!");
     }
     #endregion
 

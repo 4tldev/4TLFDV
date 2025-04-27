@@ -1,10 +1,16 @@
+# Unity generated folders
 [Ll]ibrary/
 [Tt]emp/
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
-.obj/
+UserSettings/
+.vscode/
+.vs/
+obj/
+
+# Unity specific
 *.csproj
 *.unityproj
 *.sln
@@ -19,5 +25,7 @@
 *.mdb
 *.opendb
 *.VC.db
-.vscode/
-.idea/
+
+# OS generated
+.DS_Store
+Thumbs.db

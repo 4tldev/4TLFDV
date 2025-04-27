@@ -13,8 +13,8 @@ public class UpgradeManager : MonoBehaviour
 
     [Header("Economy")]
     [SerializeField] private Player playerReference;
-    [SerializeField] private int farmhandBaseCost = 5000;
-    [SerializeField] private int farmhandCostIncrement = 1000;
+    [SerializeField] private int farmhandBaseCost = 250;
+    [SerializeField] private int farmhandCostIncrement = 250;
     private int currentFarmhandCost;
 
     private void Start()
