@@ -10,14 +10,17 @@ public abstract class BaseFarmer : MonoBehaviour, IFarmer
         CROP
     }
 
+    public enum RangeLevel { One, Two, Three, Four, Five }
+
+    public RangeLevel PlantRange = RangeLevel.One;
+    public RangeLevel WaterRange = RangeLevel.One;
+    public RangeLevel HarvestRange = RangeLevel.One;
+
+    public int HandCapacity = 1;
+
+
     [Header("Farming State")]
     public HANDSTATE handState = HANDSTATE.EMPTY;
-
-    // Future tools (still TODO)
-    //[Header("Tools")]
-    //public WateringCan wateringCan;
-    //public Hoe hoe;
-    //public Scythe scythe;
 
     // --- Farming Actions ---
     public abstract void PlantSeed(FarmTile tile);

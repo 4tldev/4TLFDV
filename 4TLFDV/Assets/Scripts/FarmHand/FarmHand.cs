@@ -15,12 +15,20 @@ public class FarmHand : BaseFarmer
 
     [Header("Work Timers")]
     [SerializeField] private float bucketFillTimer = 5f;
+    [SerializeField] private float waterTimer = 5f;
     [SerializeField] private float grabSeedTimer = 5f;
+    [SerializeField] private float plantTimer = 5f;
+    [SerializeField] private float harvestTimer = 2f; // 🔥 New: you can customize later
+
+    [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
 
     [Header("Targeting")]
     public Transform resourceTarget;
     public FarmTile tileTarget;
+
+    // 🔥 Internal
+    private float actionTimer = -1f;
 
     #region Unity Tick
     private void Update()
@@ -84,12 +92,26 @@ public class FarmHand : BaseFarmer
 
         if (Vector2.Distance(transform.position, resourceTarget.position) < 0.2f)
         {
-            if (currentTask == FARMHANDTASK.PLANTING)
-                GatherSeeds();
-            else if (currentTask == FARMHANDTASK.WATERING)
-                FillBucket();
+            if (actionTimer < 0f)
+            {
+                // Start the appropriate acquisition timer
+                actionTimer = (currentTask == FARMHANDTASK.PLANTING) ? grabSeedTimer : bucketFillTimer;
+            }
+            else
+            {
+                actionTimer -= Time.deltaTime;
 
-            currentState = FARMHANDSTATE.IDLE;
+                if (actionTimer <= 0f)
+                {
+                    if (currentTask == FARMHANDTASK.PLANTING)
+                        GatherSeeds();
+                    else if (currentTask == FARMHANDTASK.WATERING)
+                        FillBucket();
+
+                    actionTimer = -1f;
+                    currentState = FARMHANDSTATE.IDLE;
+                }
+            }
         }
     }
 
@@ -105,9 +127,34 @@ public class FarmHand : BaseFarmer
 
         if (Vector2.Distance(transform.position, tileTarget.transform.position) < 0.2f)
         {
-            PerformTileAction(tileTarget, ConvertTaskToAction(currentTask));
-            tileTarget = null;
-            currentState = FARMHANDSTATE.IDLE;
+            if (actionTimer < 0f)
+            {
+                // Start the appropriate work timer
+                switch (currentTask)
+                {
+                    case FARMHANDTASK.PLANTING:
+                        actionTimer = plantTimer;
+                        break;
+                    case FARMHANDTASK.WATERING:
+                        actionTimer = waterTimer;
+                        break;
+                    case FARMHANDTASK.HARVESTING:
+                        actionTimer = harvestTimer;
+                        break;
+                }
+            }
+            else
+            {
+                actionTimer -= Time.deltaTime;
+
+                if (actionTimer <= 0f)
+                {
+                    PerformTileAction(tileTarget, ConvertTaskToAction(currentTask));
+                    tileTarget = null;
+                    actionTimer = -1f;
+                    currentState = FARMHANDSTATE.IDLE;
+                }
+            }
         }
     }
     #endregion
@@ -133,11 +180,8 @@ public class FarmHand : BaseFarmer
         tile.HarvestCrop();
         handState = HANDSTATE.EMPTY;
 
-        // 🆕 Give the player some gold
         if (playerReference != null)
-        {
-            playerReference.AddGold(10); // or whatever value you want per harvest
-        }
+            playerReference.AddGold(10); // Gold reward
     }
 
     public override void PerformTileAction(FarmTile tile, TILEACTIONTYPE actionType)
@@ -179,10 +223,8 @@ public class FarmHand : BaseFarmer
 
         foreach (FarmTile tile in WorldManager.Instance.GetTilesByState(TileData.TileState.Empty))
         {
-            if (tile.tileType == TileData.TileType.Farmland) // <- Only farmland allowed
-            {
+            if (tile.tileType == TileData.TileType.Farmland)
                 candidates.Add(tile);
-            }
         }
 
         if (candidates.Count > 0)
@@ -197,10 +239,10 @@ public class FarmHand : BaseFarmer
         }
     }
 
-
     private void FindTileToWater()
     {
         List<FarmTile> candidates = WorldManager.Instance.GetTilesByState(TileData.TileState.PlantedUnwatered);
+
         if (candidates.Count > 0)
         {
             tileTarget = candidates[Random.Range(0, candidates.Count)];
@@ -216,6 +258,7 @@ public class FarmHand : BaseFarmer
     private void FindTileToHarvest()
     {
         List<FarmTile> candidates = WorldManager.Instance.GetTilesByState(TileData.TileState.ReadyForHarvest);
+
         if (candidates.Count > 0)
         {
             tileTarget = candidates[Random.Range(0, candidates.Count)];
@@ -261,6 +304,5 @@ public class FarmHand : BaseFarmer
     {
         playerReference = player;
     }
-
     #endregion
 }

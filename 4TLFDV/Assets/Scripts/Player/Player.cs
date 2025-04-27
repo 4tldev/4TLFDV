@@ -5,7 +5,7 @@ using TMPro;
 public class Player : BaseFarmer
 {
     [Header("Player Settings")]
-    public List<FarmHand> farmhands = new List<FarmHand>();
+    public List<FarmHand> farmHands = new List<FarmHand>();
 
     [Header("Economy")]
     [SerializeField] private int gold = 0;
