@@ -3,25 +3,33 @@
 [System.Serializable]
 public class UpgradeData
 {
-    public enum UpgradeType
+    public enum STATUPGRADETYPE
     {
-        None,
-        HireFarmhand,
-        ExpandFarm,
-        // Add more upgrade types later
+        NONE,
+        SEEDCAPACITY,
+        WATERCAPACITY,
+        HARVESTCAPACITY,
+        PLANTRANGE,
+        WATERRANGE,
+        HARVESTRANGE,
+        MOVEMENTSPEED,
+        PLANTSPEED,
+        WATERSPEED,
+        HARVESTSPEED
     }
 
 
     public string upgradeName;
-    public UpgradeType upgradeType;
+    public STATUPGRADETYPE statupgradeType;
     public int baseCost;
     public int costIncreasePerPurchase;
     public int currentLevel;
     public Action onPurchaseAction;
 
-    public UpgradeData(string name, int baseCost, int costIncrease, Action onPurchaseAction)
+    public UpgradeData(string name, STATUPGRADETYPE type, int baseCost, int costIncrease, Action onPurchaseAction)
     {
         this.upgradeName = name;
+        this.statupgradeType = type;
         this.baseCost = baseCost;
         this.costIncreasePerPurchase = costIncrease;
         this.onPurchaseAction = onPurchaseAction;

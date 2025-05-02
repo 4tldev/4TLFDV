@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a37363c5b5a7a1845a1ad6d21fc61091
+guid: 3ac17acfe0b10e54e8f5b538c9b4ecd0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -846206963967966881
-    second: FDV_SeedBox_0
+      213: -1748962743022766910
+    second: FDV_SomethingBroke_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,7 +152,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FDV_SeedBox_0
+      name: FDV_SomethingBroke_0
       rect:
         serializedVersion: 2
         x: 0
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f514a3aef3ba144f0800000000000000
-      internalID: -846206963967966881
+      spriteID: 2c43cb0d6af6ab7e0800000000000000
+      internalID: -1748962743022766910
       vertices: []
       indices: 
       edges: []
@@ -187,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FDV_SeedBox_0: -846206963967966881
+      FDV_SomethingBroke_0: -1748962743022766910
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

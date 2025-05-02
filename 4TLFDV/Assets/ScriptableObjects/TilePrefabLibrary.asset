@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df9699a6c6b61a4b9cf41e98e08a3bc, type: 3}
+  m_Name: TilePrefabLibrary
+  m_EditorClassIdentifier: 
+  grassPrefab: {fileID: 493920932258527748, guid: 02c2dc18dd3026d4ab09767ec5e5e59c, type: 3}
+  farmland_NotPlantedPrefab: {fileID: 1819144355227705967, guid: eeb94bcc1a67c2f439c05e3ea2225948, type: 3}
+  farmland_PlantedUnwateredPrefab: {fileID: 639671576096910226, guid: b87f301524d60b948a359219e4b9d3dc, type: 3}
+  farmland_PlantedWateredPrefab: {fileID: 7270162237997514975, guid: 611f601194d487f47969e254c0f0271f, type: 3}
+  farmland_ReadyToHarvestPrefab: {fileID: 5845177024598507454, guid: af0292f3ccd867e498df186c25791db0, type: 3}
+  waterPrefab: {fileID: 7093448325331874905, guid: 9ab30cb3581e2804fa31f9b8400919aa, type: 3}
+  unlockablePrefab: {fileID: 1892004219206646433, guid: 18e585488bf09414cbfd9fdf646a901a, type: 3}
+  lockedVisiblePrefab: {fileID: 1943628030785298211, guid: 0d49e67e6e6ab934eb7bc6e27850aaeb, type: 3}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b6476dadac63247b31fa74bbc51276, type: 3}
+  m_Name: Tile_Grass
+  m_EditorClassIdentifier: 
+  tileName: Tile_Grass
+  tileSprite: {fileID: -795540431149600888, guid: 23bbf770099f5bb4c85863a50ddb0bfe, type: 3}
+  tileType: 0
+  canBeTilled: 1
+  canBeFarmed: 0
+  canBeHarvested: 0
+  providesWater: 0
+  canBeWalkedOn: 1
+  canHoldPlaceableObjects: 1
+  baseUnlockCost: 0
+  description: 

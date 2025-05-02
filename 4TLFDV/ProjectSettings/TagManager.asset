@@ -7,6 +7,8 @@ TagManager:
   - Well
   - SeedBox
   - FarmTile
+  - LockedVisibleTIle
+  - PlaceableObject
   layers:
   - Default
   - TransparentFX
