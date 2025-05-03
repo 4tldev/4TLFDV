@@ -7,6 +7,7 @@ public class State_Water : TileState
     public override void OnEnterState()
     {
         tile.SetSprite(tile.spriteWaterTile);
+        tile.gameObject.tag = "WaterTile";
     }
 
     public override void UpdateState()

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7979188135549434087}
   m_Layer: 0
   m_Name: PREFAB_PlacObj_SeedChest
-  m_TagString: PlaceableObject
+  m_TagString: SeedChest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

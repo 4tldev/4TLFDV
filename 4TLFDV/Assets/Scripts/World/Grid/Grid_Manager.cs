@@ -7,6 +7,7 @@ public class Grid_Manager : MonoBehaviour
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private float tileSpacing = 1.05f;
     [SerializeField] private int initialRadius = 1;
+    [SerializeField] private int initialUnlockRingCost = 100;
 
     [Header("Dependencies")]
     [SerializeField] private Player_Controller player;
@@ -93,7 +94,7 @@ public class Grid_Manager : MonoBehaviour
             tile.Position = pos;
 
             int distance = Mathf.Max(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
-            int cost = 500 * Mathf.RoundToInt(Mathf.Pow(2, distance - 2));
+            int cost = 100 * Mathf.RoundToInt(Mathf.Pow(2, distance - 2));
             tile.SetState(new State_Unlockable(tile, cost));
             tileGrid.Add(pos, tile);
         }
@@ -142,7 +143,7 @@ public class Grid_Manager : MonoBehaviour
                 if (neighborTile.GetCurrentState() is State_LockedVisible)
                 {
                     int distance = Mathf.Max(Mathf.Abs(neighborPos.x), Mathf.Abs(neighborPos.y));
-                    int cost = 500 * Mathf.RoundToInt(Mathf.Pow(2, distance - 2));
+                    int cost = initialUnlockRingCost * Mathf.RoundToInt(Mathf.Pow(2, distance - 2));
                     neighborTile.SetState(new State_Unlockable(neighborTile, cost));
                 }
             }

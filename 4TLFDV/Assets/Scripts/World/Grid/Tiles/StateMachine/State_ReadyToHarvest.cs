@@ -13,7 +13,7 @@ public class State_ReadyToHarvest : TileState
     {
         //TODO make sure we change the logic so that we aren't hard coding this gold value
         //Intend to implement different seed logic eventually.
-        int value = 10;
+        int value = 20;
         Grid_Manager.Instance.Player.Harvest(value);
 
         

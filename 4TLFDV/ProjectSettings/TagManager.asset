@@ -4,11 +4,12 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Well
-  - SeedBox
   - FarmTile
   - LockedVisibleTIle
   - PlaceableObject
+  - SeedChest
+  - WaterTile
+  - Cabin
   layers:
   - Default
   - TransparentFX

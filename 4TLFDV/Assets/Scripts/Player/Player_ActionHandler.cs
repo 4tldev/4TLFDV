@@ -2,10 +2,17 @@
 
 public class Player_ActionHandler : MonoBehaviour
 {
-    [SerializeField] private KeyCode debugGoldKey = KeyCode.G;
+    
 
     [SerializeField] private GameObject placeableObjectPrefab;
-    [SerializeField] private KeyCode placeObjectKey = KeyCode.P;
+    [SerializeField] private GameObject cabinPrefab;
+    [SerializeField] private GameObject seedChestPrefab;
+
+    [Header("Keybinds")]
+    [SerializeField] private KeyCode seedChestKeybind = KeyCode.P;
+    [SerializeField] private KeyCode cabinKeybind = KeyCode.C;
+    [SerializeField] private KeyCode debugGoldKeybind = KeyCode.G;
+
 
     private Player_Controller player;
 
@@ -17,12 +24,14 @@ public class Player_ActionHandler : MonoBehaviour
     private void Update()
     {
         HandleMouseClick();
-        DEBUG_HandleRosebudInput();
-        DEBUG_ASSIGNHANDTOPLACOBJ();
+        //DEBUG_HandleRosebudInput();
+        DEBUG_HandlePlaceableInput();
     }
 
     private void HandleMouseClick()
     {
+        if (UI_IsBlocking()) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -45,24 +54,37 @@ public class Player_ActionHandler : MonoBehaviour
         }
     }
 
+    private bool UI_IsBlocking()
+    {
+        return UI_FH_ManagementController.IsOpen;
+    }
+
 
 
     private void DEBUG_HandleRosebudInput()
     {
-        if (Input.GetKeyDown(debugGoldKey))
+        if (Input.GetKeyDown(debugGoldKeybind))
         {
             player.AddGold(10_000_000);
             Debug.Log($"[ROSEBUD] Gold: {player.Gold}");
         }
     }
 
-    private void DEBUG_ASSIGNHANDTOPLACOBJ() 
+    private void DEBUG_HandlePlaceableInput()
     {
-        if (Input.GetKeyDown(placeObjectKey)) // or any test key
+        if (Input.GetKeyDown(seedChestKeybind))
         {
+            placeableObjectPrefab = seedChestPrefab;
             player.SetHand(HANDSTATE.PLACEABLEOBJECT);
-            Debug.Log("HANDSTATE set to PLACEABLEOBJECT");
+            Debug.Log("HANDSTATE set to PLACEABLEOBJECT (Seed Chest)");
         }
 
+        if (Input.GetKeyDown(cabinKeybind))
+        {
+            placeableObjectPrefab = cabinPrefab;
+            player.SetHand(HANDSTATE.PLACEABLEOBJECT);
+            Debug.Log("HANDSTATE set to PLACEABLEOBJECT (Cabin)");
+        }
     }
+
 }

@@ -14,7 +14,7 @@ public class UI_Toggler : MonoBehaviour
     {
         if (targetUI == null)
         {
-            Debug.LogWarning("Target UI not assigned on " + gameObject.name);
+            // Debug.LogWarning("Target UI not assigned on " + gameObject.name); 
             return;
         }
 
